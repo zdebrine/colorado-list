@@ -79,12 +79,12 @@ class App extends React.Component {
         }
         </header>
         <div>
-          <InputForm onButtonClick={this.addNewPlace}/>
-        </div>
-        <div>
           <PlaceTable onPlaceClick={this.onPlaceClick.bind(this)} placeData={this.state.places}/>
         </div>
-        <button onClick={this.checkState}>Check state</button>
+        <div>
+          <InputForm onButtonClick={this.addNewPlace}/>
+        </div>
+        {/* <button onClick={this.checkState}>Check state</button> */}
 
       </div>
     );

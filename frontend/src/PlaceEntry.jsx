@@ -12,6 +12,9 @@ var PlaceEntry = (props) => {
             <td id={props.id}>
                 {props.placeName}
             </td>
+            <td>
+                <button class="has-tooltip">Tryna Delete this God Forsaken Hell Hole?</button>
+            </td>
         </tr>
     );
 }

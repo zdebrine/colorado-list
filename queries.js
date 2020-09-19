@@ -38,15 +38,26 @@ var connection = mysql.createConnection({
         if (err) {
             callback(err, null);
         } else {
-            console.log('something happened here')
             callback(null, data);
         }
     });
+}
+
+var deleteEntry = (id, callback) => {
+    var sql = `DELETE FROM places WHERE id = "${id}"`;
+    connection.query(sql, (err, data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    })
 }
 
 
   module.exports = {
     getAllPlaces,
     getSinglePlace,
-    createPlace
+    createPlace,
+    deleteEntry
   }

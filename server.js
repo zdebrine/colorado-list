@@ -44,6 +44,18 @@ app.post('/places', (req, res) => {
     });
 });
 
+app.delete('/places/:id', (req, res) => {
+    var id = req.params.id;
+    queries.deleteEntry(id, (err, data) => {
+        if (err) {
+            console.log('I\'m not leaving... I\'M NOT FU**IN LEAVING')
+        } else {
+            console.log('The place has left willingly. In fact, he seemed kind of happy about it');
+            res.send(data)
+        }
+    });
+});
+
 
 
 
