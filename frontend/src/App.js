@@ -3,27 +3,59 @@ import './App.css';
 import InputForm from './InputForm';
 import PlaceTable from './PlaceTable';
 import placeData from './examplePlaces';
+import PlaceProfile from './PlaceProfile';
 
 class App extends React.Component {
   constructor(props) {
     super();
     this.state = {
       places: placeData,
-      currentSelection: null
+      currentSelection: null,
+      currentIndex: null
     }
   }
 
+  componentDidMount = () => {
+    var url = '/places'
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          places: data
+        })
+      });
+  }
+
+  checkState = () => {
+    console.log(this.state);
+  }
+
+  
   onPlaceClick = (placeId) => {
+    var currentPlaceIndex = null;
+    var placesArray = this.state.places;
+    for (var i = 0; i < placesArray.length; i++) {
+      if (placesArray[i].id === Number(placeId)) {
+        currentPlaceIndex = i;
+      }
+    }
     this.setState({
-      currentSelection: placeId
+      currentSelection: placeId,
+      currentIndex: currentPlaceIndex
     });
-    console.log(this.state.currentSelection);
   }
 
   render() {
+    var placeSelected = this.state.currentSelection;
+    var currentPlaceIndex = this.state.currentIndex
     return (
       <div className="App">
         <header>
+        {placeSelected ?
+        <PlaceProfile placeData={this.state.places[currentPlaceIndex]}/>
+        :
+        <div>Click on a Place to see details</div> 
+        }
         </header>
         <div>
           <InputForm />
@@ -31,6 +63,7 @@ class App extends React.Component {
         <div>
           <PlaceTable onPlaceClick={this.onPlaceClick.bind(this)} placeData={this.state.places}/>
         </div>
+        <button onClick={this.checkState}>Check state</button>
 
       </div>
     );
