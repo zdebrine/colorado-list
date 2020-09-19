@@ -6,12 +6,21 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:server": "nodemon server.js",
+    "seed": "mysql -u root -p < schema.sql",
+    "install-all": "npm install",
+    "start:react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
