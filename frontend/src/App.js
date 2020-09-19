@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import InputForm from './InputForm';
 import PlaceTable from './PlaceTable';
@@ -15,7 +14,10 @@ class App extends React.Component {
   }
 
   onPlaceClick = (placeId) => {
-    console.log(placeId);
+    this.setState({
+      currentSelection: placeId
+    });
+    console.log(this.state.currentSelection);
   }
 
   render() {
