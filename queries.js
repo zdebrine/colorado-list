@@ -38,6 +38,7 @@ var connection = mysql.createConnection({
         if (err) {
             callback(err, null);
         } else {
+            console.log('something happened here')
             callback(null, data);
         }
     });

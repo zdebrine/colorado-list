@@ -4,7 +4,7 @@ class InputForm extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            placeName: null,
+            name: null,
             description: null,
             image: null
         }
@@ -17,11 +17,17 @@ class InputForm extends React.Component {
             [key]: value
         })
     }
+    onButtonClick = (event) => {
+        event.preventDefault();
+        //console.log(this.state);
+        this.props.onButtonClick(this.state);
+        document.getElementById('placeform').reset()
+    }
 
     render() {
         return (
             <div>
-                <form>
+                <form id="placeform">
                     <h3>Place form</h3>
                     <div>
                         <br />
@@ -30,7 +36,7 @@ class InputForm extends React.Component {
                             Place name:
                         <br />
                             <br />
-                            <input id="placeName" onChange={this.onTextChange.bind(this)}/>
+                            <input id="name" onChange={this.onTextChange.bind(this)}/>
                         </label>
                         <br />
                         <br />
@@ -50,6 +56,7 @@ class InputForm extends React.Component {
                             <br />
                             <textarea id="image" onChange={this.onTextChange.bind(this)} rows='1' cols='50' />
                         </label>
+                        <button onClick={this.onButtonClick.bind(this)}>Add a Place</button>
                     </div>
                 </form>
             </div>

@@ -33,6 +33,7 @@ app.get('/places/:id', (req, res) => {
 
 app.post('/places', (req, res) => {
     var params = [req.body.name, req.body.description, req.body.image];
+    console.log(params);
     queries.createPlace(params, (err, data) => {
         if (err) {
             console.log('There was a bit of an issue adding the place');

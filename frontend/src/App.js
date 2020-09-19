@@ -30,6 +30,27 @@ class App extends React.Component {
     console.log(this.state);
   }
 
+  addNewPlace = (searchState) => {
+    var body = JSON.stringify(searchState);
+    console.log(searchState)
+    fetch('/places', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body
+    })
+    .then(
+      fetch('/places')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          places:data
+        });
+      })
+    );
+  }
+
   
   onPlaceClick = (placeId) => {
     var currentPlaceIndex = null;
@@ -58,7 +79,7 @@ class App extends React.Component {
         }
         </header>
         <div>
-          <InputForm />
+          <InputForm onButtonClick={this.addNewPlace}/>
         </div>
         <div>
           <PlaceTable onPlaceClick={this.onPlaceClick.bind(this)} placeData={this.state.places}/>
